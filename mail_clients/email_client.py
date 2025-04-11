@@ -1,16 +1,27 @@
 
 from .gmail_client import get_gmail_service
 from email.utils import parsedate_to_datetime
-from process.email_processor import EmailRepository
+from data_handler.email_processor import EmailRepository
 from googleapiclient.errors import HttpError
+from logger.logger import get_logger
 
+logger = get_logger(__name__,"logs/email_client")
 
 def fetch_and_store_emails():
     """
-    Fetches emails from Gmail and stores them in the DB.
+    Fetches emails from Gmail and stores/updates them in the DB.
     """
+    logger.info("Starting fetch_and_store_emails function.")
+
     service = get_gmail_service()
+    if not service:
+        logger.error("Gmail service was not created successfully.")
+        return
+
     page_token = None
+    processed_count = 0
+    updated_count = 0
+    new_count = 0
 
     try:
         while True:
@@ -19,16 +30,20 @@ def fetch_and_store_emails():
                 maxResults=5,  
                 pageToken=page_token
             ).execute()
-
+            
             messages = response.get('messages', [])
+
             if not messages:
-                print("No Messages Found Breaking The Loops")
-                break  
+                logger.info("No messages found. Breaking out of the loop.")
+                break
 
             for msg in messages:
+                msg_id = msg['id']
+                logger.debug("Processing message with id=%s", msg_id)
+                
                 msg_detail = service.users().messages().get(
                     userId='me',
-                    id=msg['id'],
+                    id=msg_id,
                     format='metadata'
                 ).execute()
 
@@ -64,12 +79,24 @@ def fetch_and_store_emails():
                     "labels": label_ids,
                 }
 
-                EmailRepository.insert_email(email_record)
+                result = EmailRepository.insert_or_update_email(email_record)
+                processed_count += 1
+                if result == "created":
+                    new_count += 1
+                elif result == 'updated':
+                    updated_count += 1
 
             page_token = response.get('nextPageToken')
             if not page_token:
-                print("No page_token Found Breaking the loops")
+                logger.info("No nextPageToken found. Breaking out of the loop.")
                 break
 
+        logger.info(
+            f"Email sync completed. Processed: {processed_count}, "
+            f"New: {new_count}, Updated: {updated_count}"
+        )
+
     except HttpError as error:
-        print(f"An error occurred: {error}")
+        logger.error("An error occurred: %s", error)
+
+    logger.info("Finished fetch_and_store_emails function.")
