@@ -50,6 +50,32 @@ class EmailRepository:
                 return results
         finally:
             conn.close()
+    
+    @staticmethod
+    def update_email(email_record):
+        query = """
+            UPDATE emails
+            SET is_read = %s,
+                labels = %s
+            WHERE gmail_id = %s
+        """
+        conn = get_connection()
+        try:
+            with conn:
+                with conn.cursor() as cur:
+                    cur.execute(
+                        query,
+                        (
+                            email_record["is_read"],
+                            email_record["labels"],      # or None if you're not updating labels
+                            email_record["gmail_id"],
+                        )
+                    )
+        finally:
+            conn.close()
+
+
+
 
 
 

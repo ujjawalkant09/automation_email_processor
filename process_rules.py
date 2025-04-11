@@ -130,9 +130,21 @@ def perform_action(service, email, action):
     gmail_id = email['gmail_id']
     action_lower = action.lower()
     if action_lower == "mark as read":
-        mark_as_read(service, gmail_id)
+        if not email["is_read"]:
+            mark_as_read(service, gmail_id)
+            email["is_read"] = True
+            EmailRepository.update_email(email)
+        else:
+            print(f"Email {gmail_id} is already marked as read. Skipping...")
+
     elif action_lower == "mark as unread":
-        mark_as_unread(service, gmail_id)
+        if email["is_read"]:
+            mark_as_unread(service, gmail_id)
+            email["is_read"] = False
+            EmailRepository.update_email(email)
+        else:
+             print(f"Email {gmail_id} is already unread. Skipping...")
+
     elif action_lower.startswith("move message"):
         parts = action.split(":", 1)
         if len(parts) == 2:
