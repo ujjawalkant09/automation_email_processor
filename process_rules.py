@@ -1,8 +1,8 @@
 from dotenv import load_dotenv
 import os
 import json
-from process.email_processor import EmailRepository
-from services.gmail_client import get_gmail_service
+from data_handler.email_processor import EmailRepository
+from mail_clients.gmail_client import get_gmail_service
 import datetime
 
 from logger.logger import get_logger
@@ -183,16 +183,8 @@ def perform_action(service, email, action):
         parts = action.split(":", 1)
         if len(parts) == 2:
             label_name = parts[1].strip()
-            current_labels_in_db = email.get("labels", [])
-            label_name_lower = label_name.lower()
-            already_labeled = any(lbl.lower() == label_name_lower for lbl in current_labels_in_db)
-            if already_labeled:
-                logger.debug(
-                    f"Skipping move. Email {gmail_id} already has the '{label_name}' label in DB."
-                )
-            else:
-                logger.info(f"Moving email {gmail_id} to label '{label_name}'.")
-                move_to_label(service, email, label_name)
+            logger.info(f"Moving email {gmail_id} to label '{label_name}'.")
+            move_to_label(service, email, label_name)
 
 
 if __name__ == "__main__":
