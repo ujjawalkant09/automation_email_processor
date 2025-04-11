@@ -2,11 +2,13 @@ import psycopg2
 from dotenv import load_dotenv
 import os
 from db_client.db_client import init_db
+from services.gmail_client import get_gmail_service
+from services.email_client import fetch_and_store_emails
 
 def main():
     load_dotenv()
     init_db()
-    print("Database initialized!")
+    fetch_and_store_emails()
 
     
 
