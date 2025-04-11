@@ -86,3 +86,7 @@ A name to identify the rule.
 A condition (e.g., checking if a certain field contains a keyword).
 
 An action dict specifying what to do when the condition is met.
+
+
+### For Running PyTest
+      Run : pytest -v    
