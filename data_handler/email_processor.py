@@ -1,13 +1,13 @@
 import traceback
 from db_client.db_client import get_connection
 from logger.logger import get_logger
+import re
 
 logger = get_logger(__name__,"logs/email_processor")
 
 class EmailRepository:
     @staticmethod
     def _has_email_changed(existing_email, new_email):
-        """Compare existing and new email records to detect changes."""
         fields_to_compare = [
             'thread_id', 'sender', 'subject', 'messages',
             'date_received', 'is_read', 'labels'
@@ -27,13 +27,12 @@ class EmailRepository:
             'updated' - if existing record was updated
             'unchanged' - if existing record had no changes
         """
-        logger.debug("Upserting email with gmail_id=%s", email_record.get("gmail_id"))
 
         existing_email = EmailRepository.get_email_by_gmail_id(email_record["gmail_id"])
         
         if existing_email:
             if not EmailRepository._has_email_changed(existing_email, email_record):
-                logger.debug("No changes detected for email gmail_id=%s", email_record["gmail_id"])
+                logger.debug("[EmailRepository] No changes detected for email gmail_id=%s", email_record["gmail_id"])
                 return 'unchanged'
         
         query = """
@@ -71,7 +70,7 @@ class EmailRepository:
                     result = cur.fetchone()
                     return 'created' if result[0] else 'updated'
         except Exception as e:
-            logger.error("Error upserting email: %s", e)
+            logger.error("[EmailRepository] Error upserting email: %s", e)
             logger.debug(traceback.format_exc())
             return 'error'
         finally:
@@ -90,7 +89,7 @@ class EmailRepository:
                     return dict(zip(columns, row))
                 return None
         except Exception as e:
-            logger.error("Error fetching email by gmail_id: %s", e)
+            logger.error("[EmailRepository] Error fetching email by gmail_id: %s", e)
             logger.debug(traceback.format_exc())
             return None
         finally:
@@ -108,7 +107,7 @@ class EmailRepository:
                 results = [dict(zip(columns, row)) for row in rows]
                 return results
         except Exception as e:
-            logger.error("Error fetching all emails: %s", e)
+            logger.error("[EmailRepository] Error fetching all emails: %s", e)
             logger.debug(traceback.format_exc())
         finally:
             conn.close()
@@ -116,7 +115,7 @@ class EmailRepository:
     @staticmethod
     def update_email(email_record):
         logger.debug(
-            "Updating email with gmail_id=%s, is_read=%s, labels=%s", 
+            "[EmailRepository] Updating email with gmail_id=%s, is_read=%s, labels=%s", 
             email_record.get("gmail_id"), 
             email_record.get("is_read"), 
             email_record.get("labels")
@@ -140,7 +139,71 @@ class EmailRepository:
                         )
                     )
         except Exception as e:
-            logger.error("Error updating email: %s", e)
+            logger.error("[EmailRepository] Error updating email: %s", e)
             logger.debug(traceback.format_exc())
         finally:
             conn.close()
+    
+    @staticmethod
+    def get_emails_by_conditions(rules: list, predicate: str) -> list:
+        where_clauses = []
+        params = []
+        for rule in rules:
+            field = rule['field'].lower()
+            operator = rule['predicate'].lower()
+            value = rule['value']
+            
+            field_map = {
+                'from': 'sender',
+                'subject': 'subject',
+                'message': 'messages',
+                'received date': 'date_received',
+                'received date/time': 'date_received'
+            }
+            
+            db_column = field_map.get(field)
+            if not db_column:
+                continue  
+
+            # Convert operator to SQL
+            if operator in ['contains', 'does not contain']:
+                clause = f"{db_column} {'NOT ' if 'not' in operator else ''}ILIKE %s"
+                val = f"%{value}%"
+            elif operator in ['equals', 'does not equal']:
+                clause = f"{db_column} {'!' if 'not' in operator else ''}= %s"
+                val = value
+            elif operator in ['less than', 'greater than'] and field in ['received date', 'received date/time']:
+                days = re.findall(r"(\d+)\s*days?", value)
+                if not days:
+                    continue
+                days = int(days[0])
+                clause = f"(NOW() - date_received) {'<' if 'less' in operator else '>'} INTERVAL %s"
+                val = f"{days} DAYS"
+            else:
+                logger.info(f"[EmailRepository] Unhandled predicate in rules :: {operator}")
+                continue
+            
+            where_clauses.append(clause)
+            params.append(val)
+        if not where_clauses:
+            return []
+
+        # Combine clauses with AND/OR
+        join_operator = " AND " if predicate.lower() == "all" else " OR "
+        where_sql = join_operator.join(where_clauses)
+
+        query = f"SELECT * FROM emails WHERE {where_sql};"
+ 
+        conn = get_connection()
+        try:
+            with conn.cursor() as cur:
+                cur.execute(query, params)
+                rows = cur.fetchall()
+                columns = [desc[0] for desc in cur.description]
+                return [dict(zip(columns, row)) for row in rows]
+        except Exception as e:
+            logger.error("[EmailRepository] Error fetching filtered emails: %s", e)
+            return []
+        finally:
+            conn.close()
+

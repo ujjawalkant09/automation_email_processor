@@ -98,5 +98,3 @@ def fetch_and_store_emails():
 
     except HttpError as error:
         logger.error("An error occurred: %s", error)
-
-    logger.info("Finished fetch_and_store_emails function.")

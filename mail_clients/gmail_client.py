@@ -13,7 +13,6 @@ SCOPES = ["https://www.googleapis.com/auth/gmail.modify"]
 
 def get_gmail_service():
     try:
-        logger.debug("Loading environment variables from .env")
         load_dotenv()
 
         creds = None
@@ -21,28 +20,26 @@ def get_gmail_service():
         token_pickle_file = os.getenv("TOKEN_PICKLE_PATH")
 
         if os.path.exists(token_pickle_file):
-            logger.debug("Token file found at %s, loading credentials", token_pickle_file)
+            logger.debug("[get_gmail_service] Token file found at %s, loading credentials", token_pickle_file)
             with open(token_pickle_file, "rb") as token:
                 creds = pickle.load(token)
 
         if not creds or not creds.valid:
-            logger.debug("Credentials are missing or invalid")
+            logger.debug("[get_gmail_service] Credentials are missing or invalid")
             if creds and creds.expired and creds.refresh_token:
                 logger.debug("Refreshing expired credentials")
                 creds.refresh(Request())
             else:
-                logger.debug("Creating new credentials via InstalledAppFlow")
+                logger.debug("[get_gmail_service] Creating new credentials via InstalledAppFlow")
                 flow = InstalledAppFlow.from_client_secrets_file(client_secrets_file, SCOPES)
                 creds = flow.run_local_server(port=0)
             
-            logger.debug("Saving credentials to token file")
+            logger.debug("[get_gmail_service] Saving credentials to token file")
             with open(token_pickle_file, "wb") as token:
                 pickle.dump(creds, token)
 
-        logger.debug("Building Gmail service")
         service = build("gmail", "v1", credentials=creds)
         return service
-
     except Exception as e:
-        logger.error("Error occurred while creating Gmail service: %s", e, exc_info=True)
+        logger.error("[get_gmail_service] Error occurred while creating Gmail service: %s", e, exc_info=True)
         return None
