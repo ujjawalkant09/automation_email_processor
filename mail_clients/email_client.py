@@ -11,11 +11,10 @@ def fetch_and_store_emails():
     """
     Fetches emails from Gmail and stores/updates them in the DB.
     """
-    logger.info("Starting fetch_and_store_emails function.")
 
     service = get_gmail_service()
     if not service:
-        logger.error("Gmail service was not created successfully.")
+        logger.error("[fetch_and_store_emails] Gmail service was not created successfully.")
         return
 
     page_token = None
@@ -34,12 +33,12 @@ def fetch_and_store_emails():
             messages = response.get('messages', [])
 
             if not messages:
-                logger.info("No messages found. Breaking out of the loop.")
+                logger.info("[fetch_and_store_emails] No messages found. Breaking out of the loop.")
                 break
 
             for msg in messages:
                 msg_id = msg['id']
-                logger.debug("Processing message with id=%s", msg_id)
+                logger.debug("[fetch_and_store_emails] Processing message with id=%s", msg_id)
                 
                 msg_detail = service.users().messages().get(
                     userId='me',
@@ -88,12 +87,12 @@ def fetch_and_store_emails():
 
             page_token = response.get('nextPageToken')
             if not page_token:
-                logger.info("No nextPageToken found. Breaking out of the loop.")
+                logger.info("[fetch_and_store_emails] No nextPageToken found. Breaking out of the loop.")
                 break
 
         logger.info(
-            f"Email sync completed. Processed: {processed_count}, "
-            f"New: {new_count}, Updated: {updated_count}"
+            f"[fetch_and_store_emails] Email sync completed. Processed: {processed_count}, "
+            f"[fetch_and_store_emails] New: {new_count}, Updated: {updated_count}"
         )
 
     except HttpError as error:
