@@ -1,0 +1,20 @@
+{
+    "predicate": "Any",
+    "rules": [
+      {
+        "field": "From",
+        "predicate": "Contains",
+        "value": "ujjawalkantojha123@gmail.com"
+      },
+      {
+        "field": "Subject",
+        "predicate": "Does not Contain",
+        "value": "Spam"
+      }
+    ],
+    "actions": [
+      "Mark as read",
+      "Move Message : ArchiveMail"
+    ]
+  }
+  
