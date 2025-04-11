@@ -1,0 +1,86 @@
+2025-04-11 20:51:57,295 — __main__ — DEBUG — Rules file path: rules/rules.json
+2025-04-11 20:51:57,295 — __main__ — DEBUG — Loaded rules data: {'predicate': 'Any', 'rules': [{'field': 'From', 'predicate': 'Contains', 'value': 'ujjawalkantojha123@gmail.com'}, {'field': 'Subject', 'predicate': 'Does not Contain', 'value': 'Spam'}], 'actions': ['Mark as unread', 'Move Message : ArchiveMail']}
+2025-04-11 20:51:57,325 — __main__ — DEBUG — Fetched 8 emails from repository.
+2025-04-11 20:51:57,328 — __main__ — DEBUG — Condition check - Field: From, Predicate: Contains, Value: ujjawalkantojha123@gmail.com, Email ID: 19624a11b446296d, Result: False
+2025-04-11 20:51:57,328 — __main__ — DEBUG — Condition check - Field: Subject, Predicate: Does not Contain, Value: Spam, Email ID: 19624a11b446296d, Result: True
+2025-04-11 20:51:57,328 — __main__ — DEBUG — Email 19624a11b446296d matched the conditions. Performing actions.
+2025-04-11 20:51:57,328 — __main__ — DEBUG — Email 19624a11b446296d is already unread. Skipping...
+2025-04-11 20:51:57,328 — __main__ — DEBUG — Skipping move. Email 19624a11b446296d already has the 'ArchiveMail' label in DB.
+2025-04-11 20:51:57,328 — __main__ — DEBUG — Condition check - Field: From, Predicate: Contains, Value: ujjawalkantojha123@gmail.com, Email ID: 1962477688535ba3, Result: True
+2025-04-11 20:51:57,328 — __main__ — DEBUG — Condition check - Field: Subject, Predicate: Does not Contain, Value: Spam, Email ID: 1962477688535ba3, Result: True
+2025-04-11 20:51:57,328 — __main__ — DEBUG — Email 1962477688535ba3 matched the conditions. Performing actions.
+2025-04-11 20:51:57,328 — __main__ — DEBUG — Email 1962477688535ba3 is already unread. Skipping...
+2025-04-11 20:51:57,328 — __main__ — DEBUG — Skipping move. Email 1962477688535ba3 already has the 'ArchiveMail' label in DB.
+2025-04-11 20:51:57,328 — __main__ — DEBUG — Condition check - Field: From, Predicate: Contains, Value: ujjawalkantojha123@gmail.com, Email ID: 1962476ebae7d2bd, Result: True
+2025-04-11 20:51:57,328 — __main__ — DEBUG — Condition check - Field: Subject, Predicate: Does not Contain, Value: Spam, Email ID: 1962476ebae7d2bd, Result: True
+2025-04-11 20:51:57,328 — __main__ — DEBUG — Email 1962476ebae7d2bd matched the conditions. Performing actions.
+2025-04-11 20:51:57,328 — __main__ — DEBUG — Email 1962476ebae7d2bd is already unread. Skipping...
+2025-04-11 20:51:57,328 — __main__ — DEBUG — Skipping move. Email 1962476ebae7d2bd already has the 'ArchiveMail' label in DB.
+2025-04-11 20:51:57,328 — __main__ — DEBUG — Condition check - Field: From, Predicate: Contains, Value: ujjawalkantojha123@gmail.com, Email ID: 19624766bf45b0f7, Result: True
+2025-04-11 20:51:57,328 — __main__ — DEBUG — Condition check - Field: Subject, Predicate: Does not Contain, Value: Spam, Email ID: 19624766bf45b0f7, Result: True
+2025-04-11 20:51:57,328 — __main__ — DEBUG — Email 19624766bf45b0f7 matched the conditions. Performing actions.
+2025-04-11 20:51:57,328 — __main__ — DEBUG — Email 19624766bf45b0f7 is already unread. Skipping...
+2025-04-11 20:51:57,328 — __main__ — DEBUG — Skipping move. Email 19624766bf45b0f7 already has the 'ArchiveMail' label in DB.
+2025-04-11 20:51:57,328 — __main__ — DEBUG — Condition check - Field: From, Predicate: Contains, Value: ujjawalkantojha123@gmail.com, Email ID: 196247617a3e76ad, Result: True
+2025-04-11 20:51:57,328 — __main__ — DEBUG — Condition check - Field: Subject, Predicate: Does not Contain, Value: Spam, Email ID: 196247617a3e76ad, Result: True
+2025-04-11 20:51:57,328 — __main__ — DEBUG — Email 196247617a3e76ad matched the conditions. Performing actions.
+2025-04-11 20:51:57,328 — __main__ — DEBUG — Email 196247617a3e76ad is already unread. Skipping...
+2025-04-11 20:51:57,328 — __main__ — DEBUG — Skipping move. Email 196247617a3e76ad already has the 'ArchiveMail' label in DB.
+2025-04-11 20:51:57,328 — __main__ — DEBUG — Condition check - Field: From, Predicate: Contains, Value: ujjawalkantojha123@gmail.com, Email ID: 1962475889eacfad, Result: True
+2025-04-11 20:51:57,328 — __main__ — DEBUG — Condition check - Field: Subject, Predicate: Does not Contain, Value: Spam, Email ID: 1962475889eacfad, Result: True
+2025-04-11 20:51:57,328 — __main__ — DEBUG — Email 1962475889eacfad matched the conditions. Performing actions.
+2025-04-11 20:51:57,328 — __main__ — DEBUG — Email 1962475889eacfad is already unread. Skipping...
+2025-04-11 20:51:57,328 — __main__ — DEBUG — Skipping move. Email 1962475889eacfad already has the 'ArchiveMail' label in DB.
+2025-04-11 20:51:57,328 — __main__ — DEBUG — Condition check - Field: From, Predicate: Contains, Value: ujjawalkantojha123@gmail.com, Email ID: 19624752ea610c3e, Result: True
+2025-04-11 20:51:57,328 — __main__ — DEBUG — Condition check - Field: Subject, Predicate: Does not Contain, Value: Spam, Email ID: 19624752ea610c3e, Result: True
+2025-04-11 20:51:57,328 — __main__ — DEBUG — Email 19624752ea610c3e matched the conditions. Performing actions.
+2025-04-11 20:51:57,328 — __main__ — DEBUG — Email 19624752ea610c3e is already unread. Skipping...
+2025-04-11 20:51:57,328 — __main__ — DEBUG — Skipping move. Email 19624752ea610c3e already has the 'ArchiveMail' label in DB.
+2025-04-11 20:51:57,328 — __main__ — DEBUG — Condition check - Field: From, Predicate: Contains, Value: ujjawalkantojha123@gmail.com, Email ID: 1962162c314d9219, Result: True
+2025-04-11 20:51:57,328 — __main__ — DEBUG — Condition check - Field: Subject, Predicate: Does not Contain, Value: Spam, Email ID: 1962162c314d9219, Result: True
+2025-04-11 20:51:57,328 — __main__ — DEBUG — Email 1962162c314d9219 matched the conditions. Performing actions.
+2025-04-11 20:51:57,328 — __main__ — DEBUG — Email 1962162c314d9219 is already unread. Skipping...
+2025-04-11 20:51:57,328 — __main__ — DEBUG — Skipping move. Email 1962162c314d9219 already has the 'ArchiveMail' label in DB.
+2025-04-11 20:53:36,290 — __main__ — DEBUG — Rules file path: rules/rules.json
+2025-04-11 20:53:36,290 — __main__ — DEBUG — Loaded rules data: {'predicate': 'Any', 'rules': [{'field': 'From', 'predicate': 'Contains', 'value': 'ujjawalkantojha123@gmail.com'}, {'field': 'Subject', 'predicate': 'Does not Contain', 'value': 'Spam'}], 'actions': ['Mark as unread', 'Move Message : ArchiveMail']}
+2025-04-11 20:53:36,313 — __main__ — DEBUG — Fetched 8 emails from repository.
+2025-04-11 20:53:36,315 — __main__ — DEBUG — Condition check - Field: From, Predicate: Contains, Value: ujjawalkantojha123@gmail.com, Email ID: 19624a11b446296d, Result: False
+2025-04-11 20:53:36,315 — __main__ — DEBUG — Condition check - Field: Subject, Predicate: Does not Contain, Value: Spam, Email ID: 19624a11b446296d, Result: True
+2025-04-11 20:53:36,315 — __main__ — DEBUG — Email 19624a11b446296d matched the conditions. Performing actions.
+2025-04-11 20:53:36,315 — __main__ — DEBUG — Email 19624a11b446296d is already unread. Skipping...
+2025-04-11 20:53:36,315 — __main__ — DEBUG — Skipping move. Email 19624a11b446296d already has the 'ArchiveMail' label in DB.
+2025-04-11 20:53:36,315 — __main__ — DEBUG — Condition check - Field: From, Predicate: Contains, Value: ujjawalkantojha123@gmail.com, Email ID: 1962477688535ba3, Result: True
+2025-04-11 20:53:36,315 — __main__ — DEBUG — Condition check - Field: Subject, Predicate: Does not Contain, Value: Spam, Email ID: 1962477688535ba3, Result: True
+2025-04-11 20:53:36,315 — __main__ — DEBUG — Email 1962477688535ba3 matched the conditions. Performing actions.
+2025-04-11 20:53:36,315 — __main__ — DEBUG — Email 1962477688535ba3 is already unread. Skipping...
+2025-04-11 20:53:36,315 — __main__ — DEBUG — Skipping move. Email 1962477688535ba3 already has the 'ArchiveMail' label in DB.
+2025-04-11 20:53:36,315 — __main__ — DEBUG — Condition check - Field: From, Predicate: Contains, Value: ujjawalkantojha123@gmail.com, Email ID: 1962476ebae7d2bd, Result: True
+2025-04-11 20:53:36,315 — __main__ — DEBUG — Condition check - Field: Subject, Predicate: Does not Contain, Value: Spam, Email ID: 1962476ebae7d2bd, Result: True
+2025-04-11 20:53:36,315 — __main__ — DEBUG — Email 1962476ebae7d2bd matched the conditions. Performing actions.
+2025-04-11 20:53:36,315 — __main__ — DEBUG — Email 1962476ebae7d2bd is already unread. Skipping...
+2025-04-11 20:53:36,315 — __main__ — DEBUG — Skipping move. Email 1962476ebae7d2bd already has the 'ArchiveMail' label in DB.
+2025-04-11 20:53:36,315 — __main__ — DEBUG — Condition check - Field: From, Predicate: Contains, Value: ujjawalkantojha123@gmail.com, Email ID: 19624766bf45b0f7, Result: True
+2025-04-11 20:53:36,315 — __main__ — DEBUG — Condition check - Field: Subject, Predicate: Does not Contain, Value: Spam, Email ID: 19624766bf45b0f7, Result: True
+2025-04-11 20:53:36,315 — __main__ — DEBUG — Email 19624766bf45b0f7 matched the conditions. Performing actions.
+2025-04-11 20:53:36,315 — __main__ — DEBUG — Email 19624766bf45b0f7 is already unread. Skipping...
+2025-04-11 20:53:36,315 — __main__ — DEBUG — Skipping move. Email 19624766bf45b0f7 already has the 'ArchiveMail' label in DB.
+2025-04-11 20:53:36,315 — __main__ — DEBUG — Condition check - Field: From, Predicate: Contains, Value: ujjawalkantojha123@gmail.com, Email ID: 196247617a3e76ad, Result: True
+2025-04-11 20:53:36,315 — __main__ — DEBUG — Condition check - Field: Subject, Predicate: Does not Contain, Value: Spam, Email ID: 196247617a3e76ad, Result: True
+2025-04-11 20:53:36,315 — __main__ — DEBUG — Email 196247617a3e76ad matched the conditions. Performing actions.
+2025-04-11 20:53:36,315 — __main__ — DEBUG — Email 196247617a3e76ad is already unread. Skipping...
+2025-04-11 20:53:36,315 — __main__ — DEBUG — Skipping move. Email 196247617a3e76ad already has the 'ArchiveMail' label in DB.
+2025-04-11 20:53:36,315 — __main__ — DEBUG — Condition check - Field: From, Predicate: Contains, Value: ujjawalkantojha123@gmail.com, Email ID: 1962475889eacfad, Result: True
+2025-04-11 20:53:36,315 — __main__ — DEBUG — Condition check - Field: Subject, Predicate: Does not Contain, Value: Spam, Email ID: 1962475889eacfad, Result: True
+2025-04-11 20:53:36,315 — __main__ — DEBUG — Email 1962475889eacfad matched the conditions. Performing actions.
+2025-04-11 20:53:36,315 — __main__ — DEBUG — Email 1962475889eacfad is already unread. Skipping...
+2025-04-11 20:53:36,315 — __main__ — DEBUG — Skipping move. Email 1962475889eacfad already has the 'ArchiveMail' label in DB.
+2025-04-11 20:53:36,315 — __main__ — DEBUG — Condition check - Field: From, Predicate: Contains, Value: ujjawalkantojha123@gmail.com, Email ID: 19624752ea610c3e, Result: True
+2025-04-11 20:53:36,315 — __main__ — DEBUG — Condition check - Field: Subject, Predicate: Does not Contain, Value: Spam, Email ID: 19624752ea610c3e, Result: True
+2025-04-11 20:53:36,316 — __main__ — DEBUG — Email 19624752ea610c3e matched the conditions. Performing actions.
+2025-04-11 20:53:36,316 — __main__ — DEBUG — Email 19624752ea610c3e is already unread. Skipping...
+2025-04-11 20:53:36,316 — __main__ — DEBUG — Skipping move. Email 19624752ea610c3e already has the 'ArchiveMail' label in DB.
+2025-04-11 20:53:36,316 — __main__ — DEBUG — Condition check - Field: From, Predicate: Contains, Value: ujjawalkantojha123@gmail.com, Email ID: 1962162c314d9219, Result: True
+2025-04-11 20:53:36,316 — __main__ — DEBUG — Condition check - Field: Subject, Predicate: Does not Contain, Value: Spam, Email ID: 1962162c314d9219, Result: True
+2025-04-11 20:53:36,316 — __main__ — DEBUG — Email 1962162c314d9219 matched the conditions. Performing actions.
+2025-04-11 20:53:36,316 — __main__ — DEBUG — Email 1962162c314d9219 is already unread. Skipping...
+2025-04-11 20:53:36,316 — __main__ — DEBUG — Skipping move. Email 1962162c314d9219 already has the 'ArchiveMail' label in DB.
