@@ -5,10 +5,10 @@ class EmailRepository:
     def insert_email(email_record):
         """
         email_record is a dict with keys:
-        gmail_id, thread_id, sender, subject, snippet, date_received, is_read, labels
+        gmail_id, thread_id, sender, subject, messages, date_received, is_read, labels
         """
         query = """
-            INSERT INTO emails (gmail_id, thread_id, sender, subject, snippet, date_received, is_read, labels)
+            INSERT INTO emails (gmail_id, thread_id, sender, subject, messages, date_received, is_read, labels)
             VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
             ON CONFLICT (gmail_id) DO NOTHING
             -- to avoid duplicates if we already fetched that ID
@@ -24,7 +24,7 @@ class EmailRepository:
                             email_record.get("thread_id"),
                             email_record.get("sender"),
                             email_record.get("subject"),
-                            email_record.get("snippet"),
+                            email_record.get("messages"),
                             email_record.get("date_received"),
                             email_record.get("is_read"),
                             email_record.get("labels"),

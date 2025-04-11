@@ -31,7 +31,7 @@ def init_db():
         thread_id VARCHAR(255),
         sender VARCHAR(255),
         subject TEXT,
-        snippet TEXT,
+        messages TEXT,
         date_received TIMESTAMP,
         is_read BOOLEAN,
         labels TEXT[]
