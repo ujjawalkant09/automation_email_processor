@@ -1,6 +1,6 @@
 import pytest
 import data_handler.email_processor as ep_mod
-from mail_clients.email_client import fetch_and_store_emails
+from mail_clients.process_email import fetch_and_store_emails
 
 class FakeService:
     def __init__(self, messages_list, details_list):
@@ -43,7 +43,7 @@ def test_fetch_and_store_emails(monkeypatch):
         'labelIds': []
     }
     fake_service = FakeService(messages_list, [detail])
-    monkeypatch.setattr('mail_clients.email_client.get_gmail_service',
+    monkeypatch.setattr('mail_clients.process_email.get_gmail_service',
                         lambda: fake_service)
 
     calls = []

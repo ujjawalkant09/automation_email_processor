@@ -5,7 +5,7 @@ from data_handler.email_processor import EmailRepository
 from googleapiclient.errors import HttpError
 from logger.logger import get_logger
 
-logger = get_logger(__name__,"logs/email_client")
+logger = get_logger(__name__,"logs/process_email")
 
 def fetch_and_store_emails():
     """
